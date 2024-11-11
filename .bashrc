@@ -48,6 +48,8 @@ xterm*|rxvt*)
     ;;
 esac
 
+
+
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
@@ -67,6 +69,15 @@ if ! shopt -oq posix; then
 fi
 
 # USER config
+## aliases for wsl
+wslaliases(){
+	grep -qEi "(microsoft|wsl)" /proc/version || return
+
+	alias evince=wslview
+	alias xclip=clip.exe
+}
+
+wslaliases
 ## aliases and funcs sourcing
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
